@@ -17,6 +17,7 @@ from .config import (
     DENSE_UNITS,
     DROPOUT_RATE_1,
     DROPOUT_RATE_2,
+    INITIAL_LEARNING_RATE
 )
 
 # ============================================================
@@ -92,6 +93,16 @@ def build_mobilenet(num_classes):
 
     return model, base_model
 
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(
+            learning_rate=INITIAL_LEARNING_RATE
+        ),
+        loss="sparse_categorical_crossentropy",
+        metrics=["accuracy"]
+    )
+
+    return model, base_model
+
 
 # ============================================================
 # ResNet50
@@ -123,6 +134,16 @@ def build_resnet50(num_classes):
 
     return model, base_model
 
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(
+            learning_rate=INITIAL_LEARNING_RATE
+        ),
+        loss="sparse_categorical_crossentropy",
+        metrics=["accuracy"]
+    )
+
+    return model, base_model
+
 
 # ============================================================
 # EfficientNetB0
@@ -150,6 +171,16 @@ def build_efficientnet(num_classes):
 
         num_classes
 
+    )
+
+    return model, base_model
+
+    model.compile(
+        optimizer=tf.keras.optimizers.Adam(
+            learning_rate=INITIAL_LEARNING_RATE
+        ),
+        loss="sparse_categorical_crossentropy",
+        metrics=["accuracy"]
     )
 
     return model, base_model

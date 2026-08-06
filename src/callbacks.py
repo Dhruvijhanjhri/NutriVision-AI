@@ -10,6 +10,8 @@ from src.config import MODEL_DIR
 
 def get_callbacks():
 
+    MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
     checkpoint = ModelCheckpoint(
         filepath=MODEL_DIR / "best_model.keras",
         monitor="val_accuracy",
