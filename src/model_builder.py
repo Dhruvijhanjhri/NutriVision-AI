@@ -70,28 +70,18 @@ def build_classifier_head(base_model, preprocessing_function, num_classes):
 def build_mobilenet(num_classes):
 
     base_model = tf.keras.applications.MobileNetV2(
-
         input_shape=(IMAGE_SIZE[0], IMAGE_SIZE[1], 3),
-
         include_top=False,
-
         weights="imagenet"
-
     )
 
     base_model.trainable = False
 
     model = build_classifier_head(
-
         base_model,
-
         tf.keras.applications.mobilenet_v2.preprocess_input,
-
         num_classes
-
     )
-
-    return model, base_model
 
     model.compile(
         optimizer=tf.keras.optimizers.Adam(
@@ -132,15 +122,14 @@ def build_resnet50(num_classes):
 
     )
 
-    return model, base_model
-
     model.compile(
-        optimizer=tf.keras.optimizers.Adam(
-            learning_rate=INITIAL_LEARNING_RATE
-        ),
-        loss="sparse_categorical_crossentropy",
-        metrics=["accuracy"]
-    )
+            optimizer=tf.keras.optimizers.Adam(
+                learning_rate=INITIAL_LEARNING_RATE
+            ),
+            loss="sparse_categorical_crossentropy",
+            metrics=["accuracy"]
+        )
+    
 
     return model, base_model
 
@@ -172,8 +161,6 @@ def build_efficientnet(num_classes):
         num_classes
 
     )
-
-    return model, base_model
 
     model.compile(
         optimizer=tf.keras.optimizers.Adam(
